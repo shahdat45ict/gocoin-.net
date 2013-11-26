@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\GoCoinAccessToken.cs" />
     <Compile Include="Entities\GoCoinAccount.cs" />
+    <Compile Include="Entities\GoCoinAuthorizationCode.cs" />
     <Compile Include="Entities\GoCoinDepositAddress.cs" />
     <Compile Include="Entities\GoCoinInvoices.cs" />
     <Compile Include="Entities\GoCoinMerchant.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Repositories\Modals\RestClient.cs" />
     <Compile Include="Repositories\Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repositories\Repository.cs" />
+    <Compile Include="Services\GoCoinAccessTokenService.cs" />
     <Compile Include="Services\GoCoinAccountService.cs" />
     <Compile Include="Services\GoCoinDepositAddressService.cs" />
     <Compile Include="Services\GoCoinInvoiceService.cs" />
@@ -79,7 +82,6 @@
     <Compile Include="Services\IGoCoinTransactionService.cs" />
     <Compile Include="Services\IGoCoinUserService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="dlls\Common.Logging.dll" />
     <Content Include="dlls\Newtonsoft.Json.dll" />

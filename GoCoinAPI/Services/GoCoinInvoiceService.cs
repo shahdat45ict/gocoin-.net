@@ -13,6 +13,10 @@ namespace GoCoinAPI
         #region Fields / Variables
         private ErrorManager _errLog = new ErrorManager("File");
         private IRepository<GoCoinInvoices> _invoiceRepository;
+        private GoCoinAccessTokenService _accessTokenRepository;
+        private GoCoinAccessToken _accessToken;
+        private GoCoinAuthorizationCode _authCode;
+
         #endregion
 
         #region constructor
@@ -23,6 +27,13 @@ namespace GoCoinAPI
         {
             InitializeAppRepository();
         }
+
+        public GoCoinInvoiceService(GoCoinAuthorizationCode code)
+        {
+            _authCode = code;
+            InitializeAppRepository();
+        }
+
         #endregion
 
         #region IGoCoinUserService Members
@@ -34,6 +45,9 @@ namespace GoCoinAPI
             try
             {
                 _invoiceRepository = ObjectFactory.GetInstance<IRepository<GoCoinInvoices>>();
+                _accessTokenRepository = new GoCoinAccessTokenService();
+                _accessToken = _accessTokenRepository.getAccessToken(_authCode);
+
             }
             catch (Exception _ex)
             {
@@ -69,7 +83,7 @@ namespace GoCoinAPI
            GoCoinInvoices _invoiceDetail = null;
            try
            {
-               _invoiceDetail = _invoiceRepository.GetById(_id, "invoices/:");
+               _invoiceDetail = _invoiceRepository.GetById("invoices/:" + _id);
            }
            catch (Exception _ex)
            {

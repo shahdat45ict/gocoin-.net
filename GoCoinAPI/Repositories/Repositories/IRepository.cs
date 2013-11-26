@@ -12,7 +12,7 @@ namespace GoCoinAPI
         /// </summary>
         /// <param name="id">id for type T</param>
         /// <returns></returns>
-        T GetById(string id, string callType);
+        T GetById(string callType);
         /// <summary>
         /// List search criteria data for specific Type.
         /// <remarks>Type may refer Class</remarks>

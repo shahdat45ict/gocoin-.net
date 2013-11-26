@@ -13,6 +13,9 @@ namespace GoCoinAPI
         private ErrorManager _errLog = new ErrorManager("File");
         private GoCoinService _userObjInit;
         private IRepository<GoCoinAccount> _accountRepository;
+        private GoCoinAccessTokenService _accessTokenRepository;
+        private GoCoinAccessToken _accessToken;
+        private GoCoinAuthorizationCode _authCode;
         #endregion
 
         #region constructor
@@ -21,6 +24,12 @@ namespace GoCoinAPI
         /// </summary>
         public GoCoinAccountService()
         {
+            InitializeAppRepository();
+        }
+        ///
+        public GoCoinAccountService(GoCoinAuthorizationCode code)
+        {
+            _authCode = code;
             InitializeAppRepository();
         }
         #endregion
@@ -34,6 +43,8 @@ namespace GoCoinAPI
             try
             {
                 _userObjInit = new GoCoinService();
+                _accessTokenRepository = new GoCoinAccessTokenService();
+                _accessToken = _accessTokenRepository.getAccessToken(_authCode);
                 _accountRepository = ObjectFactory.GetInstance<IRepository<GoCoinAccount>>();
             }
             catch (Exception _ex)

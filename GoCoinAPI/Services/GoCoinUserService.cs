@@ -16,6 +16,9 @@ namespace GoCoinAPI
         private ErrorManager _errLog = new ErrorManager("File");
         private GoCoinService _userObjInit;
         private IRepository<GoCoinUser> _userRepository;
+        private GoCoinAccessTokenService _accessTokenRepository;
+        private GoCoinAccessToken _accessToken;
+        private GoCoinAuthorizationCode _authCode;
         #endregion
 
         #region constructor
@@ -24,6 +27,14 @@ namespace GoCoinAPI
         /// </summary>
         public GoCoinUserService()
         {
+            InitializeAppRepository();
+        }
+        /// <summary>
+        /// Parameterised constructor to initialize authorization code and repository layer
+        /// </summary>
+        public GoCoinUserService(GoCoinAuthorizationCode code)
+        {
+            _authCode = code;
             InitializeAppRepository();
         }
         #endregion
@@ -37,12 +48,13 @@ namespace GoCoinAPI
             try
             {
                 _userObjInit = new GoCoinService();
+                _accessTokenRepository = new GoCoinAccessTokenService();
+                _accessToken = _accessTokenRepository.getAccessToken(_authCode);
                 _userRepository = ObjectFactory.GetInstance<IRepository<GoCoinUser>>();
             }
             catch (Exception _ex)
             {
                 _errLog.LogError("GoCoinAPI", _ex);
-                throw;
             }
         }
         #endregion
@@ -61,12 +73,26 @@ namespace GoCoinAPI
             return _userListing;
         }
 
+        public GoCoinUser GetCurrentGoCoinUser()
+        {
+            GoCoinUser _currentUser = null;
+            try
+            {
+                _currentUser = _userRepository.GetById("user?access_token=" + _accessToken.access_token);
+            }
+            catch (Exception _ex)
+            {
+                _errLog.LogError("GoCoinAPI", _ex);
+            }
+            return _currentUser;
+        }
+
         public GoCoinUser GetGoCoinUserDetailByID(string _id)
         {
             GoCoinUser _userByID = null;
             try
             {
-                _userByID = _userRepository.GetById(_id, "users/:");
+                _userByID = _userRepository.GetById( "users/{" + _id + "}/?access_token=" + _accessToken.access_token);
             }
             catch (Exception _ex)
             {
@@ -80,7 +106,7 @@ namespace GoCoinAPI
             GoCoinUser _newUser = null;
             try
             {
-                _newUser = _userRepository.Create(_user, "users");
+                _newUser = _userRepository.Create(_user, "users?access_token" + _accessToken.access_token);
             }
             catch (Exception _ex)
             {

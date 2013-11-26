@@ -13,6 +13,9 @@ namespace GoCoinAPI
         #region Fields / Variables
         private ErrorManager _errLog = new ErrorManager("File");
         private IRepository<GoCoinMerchant> _merchantRepository;
+        private GoCoinAccessTokenService _accessTokenRepository;
+        private GoCoinAccessToken _accessToken;
+        private GoCoinAuthorizationCode _authCode;
         #endregion
 
         #region constructor
@@ -21,6 +24,11 @@ namespace GoCoinAPI
         /// </summary>
         public GoCoinMerchantService()
         {
+            InitializeAppRepository();
+        }
+        public GoCoinMerchantService(GoCoinAuthorizationCode code)
+        {
+            _authCode = code;
             InitializeAppRepository();
         }
         #endregion
@@ -34,6 +42,8 @@ namespace GoCoinAPI
             try
             {
                 _merchantRepository = ObjectFactory.GetInstance<IRepository<GoCoinMerchant>>();
+                _accessTokenRepository = new GoCoinAccessTokenService();
+                _accessToken = _accessTokenRepository.getAccessToken(_authCode);
             }
             catch (Exception _ex)
             {
@@ -62,7 +72,7 @@ namespace GoCoinAPI
             GoCoinMerchant _merchant = null;
             try
             {
-                _merchant = _merchantRepository.GetById(_id, "merchants/:");
+                _merchant = _merchantRepository.GetById("merchants/:" + _id);
             }
             catch (Exception _ex)
             {

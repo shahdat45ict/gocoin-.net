@@ -10,6 +10,7 @@ namespace GoCoinAPI
     {
         List<GoCoinUser> ListGoCoinUser();
         GoCoinUser GetGoCoinUserDetailByID(string id);
+        GoCoinUser GetCurrentGoCoinUser();
         GoCoinUser CreateGoCoinUser(GoCoinUser g);
         GoCoinUser EditGoCoinUser(GoCoinUser id);
         string DeleteGoCoinUser(string id);

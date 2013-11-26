@@ -11,7 +11,7 @@ namespace GoCoinAPI
     public class Repository<T> : IRepository<T> where T : class
     {
         RestClient restUsers;
-        private string _strURI = "http://private-2224-gocoin.apiary.io/";
+        private string _strURI = "http://api.llamacoin.com/api/v1/";
         //Todo: Get list of T Type entities
         public List<T> GetAll(string callType)
         {
@@ -22,9 +22,9 @@ namespace GoCoinAPI
         }
 
         //Todo: Get T Type by ID
-        public T GetById(string id, string callType)
+        public T GetById(string callType)
         {
-            restUsers = new RestClient(_strURI, HttpVerb.GET, callType + id);
+            restUsers = new RestClient(_strURI, HttpVerb.GET, callType);
             T resultUser = DeserializeJson(restUsers.MakeRequest());
             return resultUser;
         }
