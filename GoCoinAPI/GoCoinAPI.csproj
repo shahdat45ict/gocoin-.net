@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Entities\GoCoinAccessToken.cs" />
     <Compile Include="Entities\GoCoinAccount.cs" />
+    <Compile Include="Entities\GoCoinApplications .cs" />
     <Compile Include="Entities\GoCoinAuthorizationCode.cs" />
     <Compile Include="Entities\GoCoinDepositAddress.cs" />
     <Compile Include="Entities\GoCoinInvoices.cs" />
@@ -65,22 +66,10 @@
     <Compile Include="Repositories\Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repositories\Repository.cs" />
     <Compile Include="Services\GoCoinAccessTokenService.cs" />
-    <Compile Include="Services\GoCoinAccountService.cs" />
-    <Compile Include="Services\GoCoinDepositAddressService.cs" />
-    <Compile Include="Services\GoCoinInvoiceService.cs" />
-    <Compile Include="Services\GoCoinMerchantService.cs" />
-    <Compile Include="Services\GoCoinMerchantUserService.cs" />
+    <Compile Include="Services\GoCoinClientService.cs" />
     <Compile Include="Services\GoCoinService.cs" />
-    <Compile Include="Services\GoCoinTransactionService.cs" />
-    <Compile Include="Services\GoCoinUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IGoCoinAccountService.cs" />
-    <Compile Include="Services\IGoCoinDepositAddressService.cs" />
-    <Compile Include="Services\IGoCoinInvoiceServices.cs" />
-    <Compile Include="Services\IGoCoinMerchantService.cs" />
-    <Compile Include="Services\IGoCoinMerchantUserService.cs" />
-    <Compile Include="Services\IGoCoinTransactionService.cs" />
-    <Compile Include="Services\IGoCoinUserService.cs" />
+    <Compile Include="Services\IGoCoinClientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dlls\Common.Logging.dll" />

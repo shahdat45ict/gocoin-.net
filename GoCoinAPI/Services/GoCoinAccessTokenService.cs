@@ -8,11 +8,11 @@ namespace GoCoinAPI
 {
     class GoCoinAccessTokenService
     {
-        RestClient restUsers;
+        RestClient restClient;
         public GoCoinAccessToken getAccessToken(GoCoinAuthorizationCode authCode)
         {
-            restUsers = new RestClient("http://api.llamacoin.com/api/v1/oauth/token/", HttpVerb.POST, SerializeJson(authCode), "");
-            GoCoinAccessToken accessTokenObj = DeserializeJson(restUsers.MakeRequest());
+            restClient = new RestClient("http://api.llamacoin.com/api/v1/oauth/token/", HttpVerb.POST,SerializeJson(authCode), "","");
+            GoCoinAccessToken accessTokenObj = DeserializeJson(restClient.MakeRequest());
             return accessTokenObj;
         }
 

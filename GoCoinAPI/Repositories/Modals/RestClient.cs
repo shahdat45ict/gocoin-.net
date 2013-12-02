@@ -24,46 +24,60 @@ namespace GoCoinAPI
         public string ContentType { get; set; }
         public string PostData { get; set; }
         public string CallType { get; set; }
+        public string Token { get; set; }
+        //public RestClient()
+        //{
+        //    EndPoint = "";
+        //    Method = HttpVerb.GET;
+        //    ContentType = "application/json";
+        //    CallType = "";
+        //    PostData = "";
+        //    Token = "";
+        //}
+        //public RestClient(string endpoint)
+        //{
+        //    EndPoint = endpoint;
+        //    Method = HttpVerb.GET;
+        //    ContentType = "application/json";
+        //    CallType = "";
+        //    PostData = "";
+        //    Token = "";
+        //}
+        //public RestClient(string endpoint, HttpVerb method, string callType)
+        //{
+        //    EndPoint = endpoint;
+        //    Method = method;
+        //    ContentType = "application/json";
+        //    CallType = callType;
+        //    PostData = "";
+        //    Token = "";
+        //}
 
-        public RestClient()
-        {
-            EndPoint = "";
-            Method = HttpVerb.GET;
-            ContentType = "application/json";
-            CallType = "";
-            PostData = "";
-        }
-        public RestClient(string endpoint)
-        {
-            EndPoint = endpoint;
-            Method = HttpVerb.GET;
-            ContentType = "application/json";
-            CallType = "";
-            PostData = "";
-        }
-        public RestClient(string endpoint, HttpVerb method, string callType)
-        {
-            EndPoint = endpoint;
-            Method = method;
-            ContentType = "application/json";
-            CallType = callType;
-            PostData = "";
-        }
+        //public RestClient(string endpoint, HttpVerb method, string postData, string callType)
+        //{
+        //    EndPoint = endpoint;
+        //    Method = method;
+        //    ContentType = "application/json";
+        //    CallType = callType;
+        //    PostData = postData;
+        //    Token = "";
+        //}
 
-        public RestClient(string endpoint, HttpVerb method, string postData, string callType)
+        public RestClient(string endpoint, HttpVerb method, string postData, string callType, string token)
         {
             EndPoint = endpoint;
             Method = method;
             ContentType = "application/json";
             CallType = callType;
             PostData = postData;
+            Token = token;
         }
-
         public string MakeRequest()
         {
             return MakeRequest("");
         }
 
+      
         // Sends request to GoCoin API and returns data in Json format.
         public string MakeRequest(string parameters)
         {
@@ -72,8 +86,10 @@ namespace GoCoinAPI
             request.Method = Method.ToString();
             request.ContentLength = 0;
             request.ContentType = ContentType;
+            if (!string.IsNullOrEmpty(Token))
+            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + Token);
 
-            if (!string.IsNullOrEmpty(PostData) && Method == HttpVerb.POST)
+            if (!string.IsNullOrEmpty(PostData) && Method == HttpVerb.POST || Method == HttpVerb.PATCH)
             {
                 var encoding = new UTF8Encoding();
                 var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(PostData);

@@ -20,7 +20,8 @@ namespace GoCoinAPI
                 x.For<IRepository<GoCoinInvoices>>().Use<Repository<GoCoinInvoices>>();
                 x.For<IRepository<GoCoinAccount>>().Use<Repository<GoCoinAccount>>();
                 x.For<IRepository<GoCoinDepositAddress>>().Use<Repository<GoCoinDepositAddress>>();
-                x.For<IRepository<GoCoinTransaction>>().Use<Repository<GoCoinTransaction>>();
+                x.For<IRepository<GoCoinClientService>>().Use<Repository<GoCoinClientService>>();
+                x.For<IRepository<GoCoinApplications>>().Use<Repository<GoCoinApplications>>();
             });
         }
     }

@@ -21,6 +21,9 @@ namespace GoCoinAPI
         public string website { get; set; }
         public string description { get; set; }
         public string tax_id { get; set; }
+        public string logo_url { get; set; }
+        public string btc_payout_split { get; set; }
+        public string usd_payout_split { get; set; }
         public string created_at { get; set; }
         public string updated_at { get; set; }
     }
