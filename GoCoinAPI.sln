@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCoinAPI", "GoCoinAPI\GoCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoGoCoinTestApp", "DemoGoCoinTestApp\DemoGoCoinTestApp.csproj", "{ECFFBCA3-290D-4758-8DCF-A2DDC12920F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebGoCoin", "DemoWebGoCoin\DemoWebGoCoin.csproj", "{2DFC9EF9-EF68-469A-B1A9-A3920460864E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{ECFFBCA3-290D-4758-8DCF-A2DDC12920F4}.Release|Mixed Platforms.Build.0 = Release|x86
 		{ECFFBCA3-290D-4758-8DCF-A2DDC12920F4}.Release|x86.ActiveCfg = Release|x86
 		{ECFFBCA3-290D-4758-8DCF-A2DDC12920F4}.Release|x86.Build.0 = Release|x86
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2DFC9EF9-EF68-469A-B1A9-A3920460864E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
