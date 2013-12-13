@@ -11,7 +11,7 @@ namespace GoCoinAPI
         RestClient restClient;
         public GoCoinAccessToken getAccessToken(GoCoinAuthorizationCode authCode)
         {
-            restClient = new RestClient("http://api.llamacoin.com/api/v1/oauth/token/", HttpVerb.POST,SerializeJson(authCode), "","");
+           restClient = new RestClient("http://api.gocoin.com/api/v1/oauth/token/", HttpVerb.POST, SerializeJson(authCode), "", "");
             GoCoinAccessToken accessTokenObj = DeserializeJson(restClient.MakeRequest());
             return accessTokenObj;
         }

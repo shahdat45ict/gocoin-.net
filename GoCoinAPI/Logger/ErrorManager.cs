@@ -25,7 +25,16 @@ namespace Logger
         /// Logs an Error in Windows Event logs.
         /// </summary>
         /// <param name="ex"></param>
-        public void LogError(string _goCoinAPI, Exception _ex)
+        public void LogError(string _goCoinAPI, Exception _ex ,string _methodname)
+        {
+            //Logger.Error(ex);
+            if (!EventLog.SourceExists(_goCoinAPI))
+                EventLog.CreateEventSource(_goCoinAPI, "Application");
+
+            EventLog.WriteEntry(_goCoinAPI, _ex.Message + _methodname , EventLogEntryType.Error);
+        }
+
+        public void WebLogError(string _goCoinAPI, Exception _ex)
         {
             //Logger.Error(ex);
             if (!EventLog.SourceExists(_goCoinAPI))

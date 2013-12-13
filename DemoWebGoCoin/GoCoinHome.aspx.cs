@@ -11,22 +11,14 @@ namespace DemoWebGoCoin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                //txtClient_Id.Text = "895963850ade9e8f5652ecabc7e16b3d561ea22f8d8b4c4207e6784a0db3a01f";
-                //txtClient_Secret.Text = "6b08be21178a7f76229d7cae91a33eed023b7bf5aede577f4cc7d73ec5bd6e3f";
-                //txtRedirect_Url.Text = "http://119.226.189.186:8100/DemoWebGoCoin/GetGoCoinCalls.aspx";
-                //txtClient_Id.Text = "";
-                //txtClient_Secret.Text = "";
-                //txtRedirect_Url.Text = "";
-              
-            }
+            
         }
         protected void GetToken(string client_id, string client_secret, string redirect_uri)
         {
-
-            Response.Redirect("https://dashboard.llamacoin.com/auth?response_type=code&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_read_write merchant_read_write invoice_read_write&state=1234", false);
-         
+            // This will redirect the user to dashbord for generating the token using different scopes as per Documentation.
+           // Response.Redirect("https://dashboard.llamacoin.com/auth?response_type=code&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_read_write merchant_read_write invoice_read_write&state=1234", false);
+            Response.Redirect("https://dashboard.gocoin.com/auth?response_type=code&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=user_read_write merchant_read_write invoice_read_write&state=1234", false);
+        
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

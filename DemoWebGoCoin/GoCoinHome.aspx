@@ -1,15 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GoCoinHome.aspx.cs" Inherits="DemoWebGoCoin.GoCoinHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script type="text/javascript">
-       function windowOpen() {
-           myWindow = window.open('https://llamacoin-dashboard.herokuapp.com/login', '_blank', 'width=650,height=350, scrollbars=no,resizable=no')
-
-           myWindow.focus()
-       }
-    </script>
-   
-
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Go Coin
@@ -31,11 +22,7 @@
             <asp:TextBox ID="txtRedirect_Url" runat="server"></asp:TextBox>
             </p>
             <p>
-                <%--<asp:Button ID="Button1" runat="server" Text="Button" />
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" />
-                 <input type="button" value="Open Window" onclick="windowOpen()">--%>
-
-                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click"  />
+               <asp:Button ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click"  />
             </p>
        
    

@@ -68,7 +68,7 @@ namespace GoCoinAPI
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "InitializeAppRepository");
             }
         }
         #endregion
@@ -80,11 +80,11 @@ namespace GoCoinAPI
             List<GoCoinUser> _userListing = null;
             try
             {
-                _userListing = _userRepository.GetAll("users", accessToken);
+                _userListing = _userRepository.GetAll("users" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex , "  Received response from server in method: " + "ListGoCoinUser");
             }
             return _userListing;
         }
@@ -94,11 +94,11 @@ namespace GoCoinAPI
             GoCoinUser _currentUser = null;
             try
             {
-                _currentUser = _userRepository.GetById("user", accessToken);
+                _currentUser = _userRepository.GetById("user/" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetCurrentGoCoinUser");
             }
             return _currentUser;
         }
@@ -108,11 +108,11 @@ namespace GoCoinAPI
             GoCoinUser _userByID = null;
             try
             {
-                _userByID = _userRepository.GetById("users/" + _id, accessToken);
+                _userByID = _userRepository.GetById("users/" + _id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinUserDetailByID");
             }
             return _userByID;
         }
@@ -123,11 +123,11 @@ namespace GoCoinAPI
             GoCoinUser _newUser = null;
             try
             {
-                _newUser = _userRepository.Create(_user, "users", accessToken);
+                _newUser = _userRepository.Create(_user, "users" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "CreateGoCoinUser");
             }
             return _newUser;
         }
@@ -136,11 +136,11 @@ namespace GoCoinAPI
         {
             try
             {
-                _editUser = _userRepository.Edit(_editUser, "users/" + _editUser.id, accessToken);
+                _editUser = _userRepository.Edit(_editUser, "users/" + _editUser.id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "EditGoCoinUser");
             }
             return _editUser;
         }
@@ -150,11 +150,11 @@ namespace GoCoinAPI
             string _strDeleteText = "";
             try
             {
-                _strDeleteText = _userRepository.Delete(_id, "users/" + _id, accessToken);
+                _strDeleteText = _userRepository.Delete(_id, "users/" + _id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "DeleteGoCoinUser");
             }
             return _strDeleteText;
         }
@@ -172,7 +172,7 @@ namespace GoCoinAPI
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "ListGoCoinMerchant");
             }
             return _lstMerchant;
         }
@@ -186,7 +186,7 @@ namespace GoCoinAPI
         //    }
         //    catch (Exception _ex)
         //    {
-        //        _errLog.LogError("GoCoinAPI", _ex);
+        //        _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetCurrentGoCoinMerchant");
         //    }
         //    return _currentUser;
         //}
@@ -196,11 +196,11 @@ namespace GoCoinAPI
             GoCoinMerchant _merchant = null;
             try
             {
-                _merchant = _merchantRepository.GetById("merchants/" + _id, accessToken);
+                _merchant = _merchantRepository.GetById("merchants/" + _id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex , "  Received response from server in method: " + "GetGoCoinMerchantDetailByID");
             }
             return _merchant;
         }
@@ -210,11 +210,11 @@ namespace GoCoinAPI
             List<GoCoinMerchant> _merchant = null;
             try
             {
-                _merchant = _merchantRepository.GetListById("merchants/" + _id + "/accounts", accessToken);
+                _merchant = _merchantRepository.GetListById("merchants/" + _id + "/accounts" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinMerchantAccounturlbyMerchantid");
             }
             return _merchant;
         }
@@ -224,11 +224,11 @@ namespace GoCoinAPI
             GoCoinMerchant _merchant = null;
             try
             {
-                _merchant = _merchantRepository.GetById("merchants/" + _id + "/users", accessToken);
+                _merchant = _merchantRepository.GetById("merchants/" + _id + "/users" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinMerchantUserurl");
             }
             return _merchant;
         }
@@ -238,11 +238,11 @@ namespace GoCoinAPI
             GoCoinMerchant _merchant = null;
             try
             {
-                _merchant = _merchantRepository.GetById("merchants/" + _id + "/invoices", accessToken);
+                _merchant = _merchantRepository.GetById("merchants/" + _id + "/invoices" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinMerchantInvoiceurl");
             }
             return _merchant;
         }
@@ -252,11 +252,11 @@ namespace GoCoinAPI
             GoCoinMerchant _merchant = null;
             try
             {
-                _merchant = _merchantRepository.GetById("merchants/" + _id + "/transactions", accessToken);
+                _merchant = _merchantRepository.GetById("merchants/" + _id + "/transactions" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinMerchantTransactionsurl");
             }
             return _merchant;
         }
@@ -268,11 +268,11 @@ namespace GoCoinAPI
             GoCoinMerchant _newMerchant = null;
             try
             {
-                _newMerchant = _merchantRepository.Create(_merchant, "merchants", accessToken);
+                _newMerchant = _merchantRepository.Create(_merchant, "merchants" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "CreateGoCoinMerchant");
             }
             return _newMerchant;
         }
@@ -281,11 +281,11 @@ namespace GoCoinAPI
         {
             try
             {
-                _editMerchant = _merchantRepository.Edit(_editMerchant, "merchants/" + _editMerchant.id, accessToken);
+                _editMerchant = _merchantRepository.Edit(_editMerchant, "merchants/" + _editMerchant.id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "EditGoCoinMerchant");
             }
             return _editMerchant;
         }
@@ -295,11 +295,11 @@ namespace GoCoinAPI
             string _strMSG = "";
             try
             {
-                _strMSG = _merchantRepository.Delete(_id, "merchants/" + _id, accessToken);
+                _strMSG = _merchantRepository.Delete(_id, "merchants/" + _id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "DeleteGoCoinMerchant");
             }
             return _strMSG;
         }
@@ -313,11 +313,11 @@ namespace GoCoinAPI
             List<GoCoinInvoices> _lstInvoices = null;
             try
             {
-                _lstInvoices = _invoiceRepository.GetAll("invoices", accessToken);
+                _lstInvoices = _invoiceRepository.GetAll("invoices" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "ListGoCoinInvoices");
             }
             return _lstInvoices;
         }
@@ -325,7 +325,7 @@ namespace GoCoinAPI
         public GoCoinInvoices SearchGoCoinInvoices()
         {
             GoCoinInvoices _lstInvoices = null;
-            _lstInvoices = _invoiceRepository.Search("invoices/search?merchant_id=:merchant_id&status=:status&start_time=:start_time&end_time=:end_time&page=:page_number&per_page=:per_page", accessToken);
+            _lstInvoices = _invoiceRepository.Search("invoices/search?merchant_id=:merchant_id&status=:status&start_time=:start_time&end_time=:end_time&page=:page_number&per_page=:per_page" + "?access_token=" + accessToken, accessToken);
             return _lstInvoices;
         }
 
@@ -334,11 +334,11 @@ namespace GoCoinAPI
             GoCoinInvoices _invoiceDetail = null;
             try
             {
-                _invoiceDetail = _invoiceRepository.GetById("invoices/" + _id, accessToken);
+                _invoiceDetail = _invoiceRepository.GetById("invoices/" + _id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinInvoicesDetailByID");
             }
             return _invoiceDetail;
         }
@@ -349,11 +349,11 @@ namespace GoCoinAPI
             try
             {
 
-                _invoiceDetail = _invoiceRepository.GetByIdPostRequest("merchants/" + _id + "/invoices", _data , accessToken);
+                _invoiceDetail = _invoiceRepository.GetByIdPostRequest("merchants/" + _id + "/invoices" + "?access_token=" + accessToken, _data, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "GetGoCoinInvoicesDetailByMerchantID");
             }
             return _invoiceDetail;
         
@@ -364,11 +364,11 @@ namespace GoCoinAPI
             GoCoinInvoices _newInvoice = null;
             try
             {
-                _newInvoice = _invoiceRepository.Create(_invoice, "merchants/" + _invoice.merchant_id + "/invoices", accessToken);
+                _newInvoice = _invoiceRepository.Create(_invoice, "merchants/" + _invoice.merchant_id + "/invoices" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "CreateGoCoinInvoices");
             }
             return _newInvoice;
         }
@@ -377,11 +377,11 @@ namespace GoCoinAPI
         {
             try
             {
-                _editInvoice = _invoiceRepository.Edit(_editInvoice, "invoices/" + _editInvoice.id, accessToken);
+                _editInvoice = _invoiceRepository.Edit(_editInvoice, "invoices/" + _editInvoice.id + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "EditGoCoinInvoices");
             }
             return _editInvoice;
         }
@@ -391,11 +391,11 @@ namespace GoCoinAPI
             string _strMSG = "";
             try
             {
-                _strMSG = _invoiceRepository.Delete(_id, "invoices/", accessToken);
+                _strMSG = _invoiceRepository.Delete(_id, "invoices/" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "DeleteGoCoinInvoices");
             }
             return _strMSG;
         }
@@ -408,11 +408,11 @@ namespace GoCoinAPI
             List<GoCoinApplications> _ApplicationListByID = null;
             try
             {
-                _ApplicationListByID = _applicationsRepository.GetListById("users/" + _id + "/applications", accessToken);
+                _ApplicationListByID = _applicationsRepository.GetListById("users/" + _id + "/applications" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "ListGoCoinApplicationsByUserId");
             }
             return _ApplicationListByID;
         }
@@ -425,18 +425,14 @@ namespace GoCoinAPI
             List<GoCoinAccount> _ApplicationListByID = null;
             try
             {
-                _ApplicationListByID = _accountsRepository.GetListById("merchants/" + _id + "/accounts", accessToken);
+                _ApplicationListByID = _accountsRepository.GetListById("merchants/" + _id + "/accounts" + "?access_token=" + accessToken, accessToken);
             }
             catch (Exception _ex)
             {
-                _errLog.LogError("GoCoinAPI", _ex);
+                _errLog.LogError("GoCoinAPI", _ex, "  Received response from server in method: " + "ListGoCoinAccountByMerchantId");
             }
             return _ApplicationListByID;
         }
-        #endregion
-
-
-
-        
+        #endregion        
     }
 }

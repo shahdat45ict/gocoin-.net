@@ -11,7 +11,7 @@ namespace GoCoinAPI
     public class Repository<T> : IRepository<T> where T : class
     {
         RestClient restClient;
-        private string _strURI = "http://api.llamacoin.com/api/v1/";
+         private string _strURI = "http://api.gocoin.com/api/v1/";
         //Todo: Get list of T Type entities
         public List<T> GetAll(string callType,string _accessToken)
         {
