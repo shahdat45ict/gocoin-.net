@@ -5,25 +5,11 @@
     <h2>
         Go Coin
     </h2>
-        <p>
-            You can log into the dashboard by clicking the below button, to create your own OAuth client. That will create a key and secret that you can use to obtain a token.
-        </p>
-       
+              
             <p>
-            <asp:Label ID="lblClient_Id" runat="server" Text="Client Id"></asp:Label>
-            <asp:TextBox ID="txtClient_Id" runat="server"></asp:TextBox>
+            <asp:Label ID="lblAccessToken" runat="server" Text="AccessToken"></asp:Label>
+             </br>
+            <asp:Literal ID="LitAccessToken" Text="" runat="server" />
             </p>
-            <p>
-            <asp:Label ID="lblClient_Secret" runat="server" Text="Client Secret Key"></asp:Label>
-            <asp:TextBox ID="txtClient_Secret" runat="server"></asp:TextBox>
-            </p>
-            <p>
-            <asp:Label ID="lblRedirect_Url" runat="server" Text="Redirect Url"></asp:Label>
-            <asp:TextBox ID="txtRedirect_Url" runat="server"></asp:TextBox>
-            </p>
-            <p>
-               <asp:Button ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click"  />
-            </p>
-       
    
 </asp:Content>
