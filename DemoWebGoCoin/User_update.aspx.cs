@@ -35,16 +35,6 @@ namespace DemoWebGoCoin
                 currentuser = client.api.user.self();
 
                 GoCoinAPI.User Updateduser = new GoCoinAPI.User();
-                //string userfname = currentuser.first_name;
-                //string userlname = currentuser.last_name;
-                //Updateduser.first_name = "Anup";
-                //Updateduser.last_name = "Warade";
-
-                //string userfname = user.first_name;
-                //string userlname = user.last_name;
-                //user1.first_name = userfname.Substring(0, 5) + DateTime.Now;
-                //user1.last_name = userlname.Substring(0, 5) + DateTime.Now;
-
                 string userfname = currentuser.first_name;
                 string userlname = currentuser.last_name;
                 Updateduser.first_name = userfname.Substring(0, 4) + "  " + DateTime.Now; ;
