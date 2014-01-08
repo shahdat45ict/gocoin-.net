@@ -46,6 +46,7 @@
     <Compile Include="Api\AccountsTests.cs" />
     <Compile Include="Api\ApiTestsBase.cs" />
     <Compile Include="Api\InvoicesTests.cs" />
+    <Compile Include="Api\MerchantTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

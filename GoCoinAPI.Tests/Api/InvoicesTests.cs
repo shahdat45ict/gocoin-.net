@@ -7,7 +7,7 @@ namespace GoCoinAPI.Tests.Api
     {
         private const string InvoiceId = "c265772f-18be-47db-a14b-ed28db228673";
 
-        // This test is failing with an HTTP 404 Not Found response, but the url looks fine according to
+        // This test is failing because of an HTTP 404 Not Found response, but the url looks fine according to
         // the documentation (http://docs.gocoinapi.apiary.io/#invoices), /merchants/:id/invoices.
         [Test]
         public void CanCreate()
@@ -35,14 +35,13 @@ namespace GoCoinAPI.Tests.Api
 
         // I am receiving an HTTP 401 Unauthorized response, even though the token has both invoice_read
         // and invoice_read_write OAuth Scopes. Nevertheless, the search method is returning just one instance
-        // of the Invoices class, but it should return a collection instead.
-        //[Test]
-        //public void CanSearch()
-        //{
-        //    var client = new Client { token = accessToken };
-        //    var user = client.api.user.self();
-        //    var result = client.api.invoices.search("merchant_id=" + user.merchant_id);
+        // of the Invoices class, but it should return a collection instead, and this is why I leave the
+        // last line of this test commented out, because it doesn't compile.
+        [Test]
+        public void CanSearch()
+        {
+            var result = Client.api.invoices.search("merchant_id=" + User.merchant_id);
         //    Assert.Greater(result.Count, 0);
-        //}
+        }
     }
 }
