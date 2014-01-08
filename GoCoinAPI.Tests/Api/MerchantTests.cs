@@ -39,9 +39,9 @@ namespace GoCoinAPI.Tests.Api
         }
 
         // This test is failing because I need to create a new merchant before deleting it, but creation
-        // isn't working, see CanList(). Moreover, the delete method is an instance of the Merchant class,
-        // but it should return void according to the api docs (http://docs.gocoinapi.apiary.io/#merchants)
-        // of the delete operation.
+        // isn't working, see CanList() comments. Moreover, the delete method is returning an instance of
+        // the Merchant class, but it should return void according to the api docs
+        // (http://docs.gocoinapi.apiary.io/#merchants) of the delete operation.
         [Test]
         public void CanDelete()
         {
