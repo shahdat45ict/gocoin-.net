@@ -3,16 +3,12 @@
 namespace GoCoinAPI.Tests.Api
 {
     [TestFixture]
-    public class AccountsTests
+    public class AccountsTests : ApiTestsBase
     {
-        private const string accessToken = "8c1618e67b7425e66413cfdcf4f790ce853e5b6dd184d9f333293f833b4cfdac";
-
         [Test]
         public void CanList()
         {
-            var client = new Client {token = accessToken};
-            var user = client.api.user.self();
-            var result = client.api.accounts.alist(user.merchant_id);
+            var result = Client.api.accounts.alist(User.merchant_id);
             Assert.Greater(result.Count, 0);
         }
 
