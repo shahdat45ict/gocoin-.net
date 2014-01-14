@@ -57,22 +57,6 @@ namespace GoCoinAPI
             this._api = api;
         }
 
-        public Merchant list()
-        {
-            Callbackurl = "merchants?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
-            Merchant Merchant_list = DeserializeJson(restClient.MakeRequest());
-            return Merchant_list;
-        }
-
-        public Merchant create(Merchant _merchant)
-        {
-            Callbackurl = "merchants?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_merchant), Callbackurl, this._api.client.token);
-            Merchant Merchant_create = DeserializeJson(restClient.MakeRequest());
-            return Merchant_create;
-        }
-
         public Merchant update(Merchant _merchant)
         {
 
@@ -80,15 +64,6 @@ namespace GoCoinAPI
             restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_merchant), Callbackurl, this._api.client.token);
             Merchant Merchant_update = DeserializeJson(restClient.MakeRequest());
             return Merchant_update;
-        }
-
-        public Merchant delete(Merchant _merchant)
-        {
-
-            Callbackurl = "merchants/" + _merchant.id + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.DELETE, "", Callbackurl, this._api.client.token);
-            Merchant Merchant_Created = DeserializeJson(restClient.MakeRequest());
-            return Merchant_Created;
         }
 
         public Merchant get(string id)

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using Logger;
 
@@ -38,49 +36,6 @@ namespace GoCoinAPI
             List<Accounts> Accounts_list = DeserializeListJson(restClient.MakeRequest());
             return Accounts_list;
         }
-
-        public Accounts create(Accounts _accounts)
-        {
-            Callbackurl = "merchants" + _accounts.id + "/accounts" + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_accounts), Callbackurl, this._api.client.token);
-            Accounts Accounts_create = DeserializeJson(restClient.MakeRequest());
-            return Accounts_create;
-        }
-
-        public Accounts update(Accounts _accounts)
-        {
-
-            Callbackurl = "accounts/" + _accounts.id + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_accounts), Callbackurl, this._api.client.token);
-            Accounts Accounts_update = DeserializeJson(restClient.MakeRequest());
-            return Accounts_update;
-        }
-
-        public Accounts delete(Accounts _accounts)
-        {
-
-            Callbackurl = "accounts/" + _accounts.id + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.DELETE, "", Callbackurl, this._api.client.token);
-            Accounts Accounts_Created = DeserializeJson(restClient.MakeRequest());
-            return Accounts_Created;
-        }
-
-        public Accounts get(string id)
-        {
-            Callbackurl = "accounts/" + id + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
-            Accounts Accounts_getbyid = DeserializeJson(restClient.MakeRequest());
-            return Accounts_getbyid;
-        }
-
-        public Accounts verify(Accounts _accounts)
-        {
-            Callbackurl = "accounts/" + _accounts.id + "/verifications" +"?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_accounts), Callbackurl, this._api.client.token);
-            Accounts Accounts_create = DeserializeJson(restClient.MakeRequest());
-            return Accounts_create;
-        }
-
 
         //Todo: Deserialize Json to type T
         private Accounts DeserializeJson(string jsonObjectString)
