@@ -29,6 +29,11 @@ namespace GoCoinAPI
             this._api = api;
         }
        
+        /// <summary>
+        /// Gets a list of accounts and balances associated with a merchant.
+        /// </summary>
+        /// <param name="id">Merchant's id</param>
+        /// <returns>List of accounts of the given merchant.</returns>
         public List<Accounts> alist(string id)
         {
             Callbackurl = "merchants/" + id + "/accounts"+ "?access_token=" + this._api.client.token;

@@ -57,6 +57,11 @@ namespace GoCoinAPI
             this._api = api;
         }
 
+        /// <summary>
+        /// Updates an existing merchant.
+        /// </summary>
+        /// <param name="_merchant">New merchant data.</param>
+        /// <returns>The updated merchant.</returns>
         public Merchant update(Merchant _merchant)
         {
 
@@ -66,6 +71,11 @@ namespace GoCoinAPI
             return Merchant_update;
         }
 
+        /// <summary>
+        /// Gets an existing merchant.
+        /// </summary>
+        /// <param name="id">Merchant's id.</param>
+        /// <returns>The found merchant.</returns>
         public Merchant get(string id)
         {
             Callbackurl = "merchants/" + id + "?access_token=" + this._api.client.token;

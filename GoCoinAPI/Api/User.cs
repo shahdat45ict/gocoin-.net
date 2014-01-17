@@ -40,7 +40,10 @@ namespace GoCoinAPI
             this._api = api;
         }
 
-        
+        /// <summary>
+        /// Gets resource owner user.
+        /// </summary>
+        /// <returns>Resource owner user.</returns>
         public User self()
         {
             Callbackurl = "user/?access_token=" + this._api.client.token;
@@ -49,6 +52,11 @@ namespace GoCoinAPI
             return User_self;
         }
 
+        /// <summary>
+        /// Updates an existing user.
+        /// </summary>
+        /// <param name="_user">New data for the user.</param>
+        /// <returns>The updated user.</returns>
         public User update(User _user)
         {
 
@@ -58,6 +66,11 @@ namespace GoCoinAPI
             return User_update;
         }
 
+        /// <summary>
+        /// Gets an existing user.
+        /// </summary>
+        /// <param name="id">User's id.</param>
+        /// <returns>The found user.</returns>
         public User get(string id)
         {
             Callbackurl = "users/" + id + "?access_token=" + this._api.client.token;
@@ -66,6 +79,11 @@ namespace GoCoinAPI
             return User_getbyid;
         }
        
+        /// <summary>
+        /// Changes user password.
+        /// </summary>
+        /// <param name="_user">User data with current, new and new confirmation passwords.</param>
+        /// <returns>The updated user.</returns>
         public User update_password(User _user)
         {
             Callbackurl = "users/" + _user.id + "/password" + "?access_token=" + this._api.client.token;

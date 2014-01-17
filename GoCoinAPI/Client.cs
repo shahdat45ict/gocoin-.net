@@ -32,7 +32,6 @@ namespace GoCoinAPI
         Invoices _invoices;
         Merchant _merchants;
         Accounts _accounts;
-        Apps _apps;
 
 
         public User user
@@ -63,13 +62,6 @@ namespace GoCoinAPI
             get { return _accounts; }
             set { _accounts = value; }
         }
-
-        public Apps apps
-        {
-            get { return _apps; }
-            set { _apps = value; }
-        }
-
 
         public string client_id
         {

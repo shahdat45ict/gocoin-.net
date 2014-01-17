@@ -13,7 +13,6 @@ namespace GoCoinAPI
         private Invoices _invoices;
         private Merchant _merchants;
         private Accounts _accounts;
-        private Apps _apps;
         private string _Baseapiurl;
         private string _accesstoken;
 
@@ -48,12 +47,6 @@ namespace GoCoinAPI
             set { _accounts = value; }
         }
 
-        public Apps apps
-        {
-            get { return _apps; }
-            set { _apps = value; }
-        }
-
         public string Baseapiurl
         {
             get { return _Baseapiurl; }
@@ -75,7 +68,6 @@ namespace GoCoinAPI
            this._client = client;
            this._user = new User(this);
            this._merchants = new Merchant(this);
-           this._apps = new Apps(this);
            this._invoices = new Invoices(this);
            this._accounts = new Accounts(this);
            this.Baseapiurl = client.request_client(client.secure) + "://" + client.host.Trim('/') + "/" + client.path.Trim('/') + "/" + client.api_version.Trim('/') + "/";

@@ -113,6 +113,12 @@ namespace GoCoinAPI
         private ErrorManager _errLog = new ErrorManager("File");
         private string Callbackurl = null;
 
+        /// <summary>
+        /// Create a new invoice.
+        /// </summary>
+        /// <param name="_merchantid">Merchant's id.</param>
+        /// <param name="_invoice">New invoice data.</param>
+        /// <returns>The created Invoice.</returns>
         public Invoices create(string  _merchantid, Invoices _invoice)
         {             
             Callbackurl = "merchants/" + _merchantid + "/invoices";
@@ -121,15 +127,11 @@ namespace GoCoinAPI
             return Invoices_create;
         }
 
-        public Invoices update(Invoices _invoice)
-        {
-
-            Callbackurl = "invoices/" + _invoice.id;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_invoice), Callbackurl, this._api.client.token);
-            Invoices Invoices_update = DeserializeJson(restClient.MakeRequest());
-            return Invoices_update;
-        }
-
+        /// <summary>
+        /// Searches invoices.
+        /// </summary>
+        /// <param name="_invoiceparams">Querystring with the invoice parameters.</param>
+        /// <returns>The invoices that match the search parameters.</returns>
         public Invoices search(string _invoiceparams)
         {
 
@@ -139,7 +141,11 @@ namespace GoCoinAPI
             return Invoices_update;
         }
 
-      
+        /// <summary>
+        /// Gets an invoice.
+        /// </summary>
+        /// <param name="id">Invoice id.</param>
+        /// <returns>The invoice data.</returns>
         public Invoices get(string id)
         {
             Callbackurl = "invoices/" + id + "?access_token=" + this._api.client.token;

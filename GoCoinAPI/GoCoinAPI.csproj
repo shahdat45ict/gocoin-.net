@@ -57,9 +57,6 @@
     <Compile Include="Api\AccessToken.cs" />
     <Compile Include="Api\AuthorizationCode.cs" />
     <Compile Include="Api\Accounts.cs" />
-    <Compile Include="Api\Apps .cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Api\Invoices.cs" />
     <Compile Include="Api\Merchant.cs" />
     <Compile Include="Api\User.cs" />

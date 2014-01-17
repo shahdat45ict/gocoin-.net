@@ -66,17 +66,6 @@ namespace DemoWebGoCoin
                 //Response.Write(" Account get");
                 //Response.Write("</br>");
                 //Response.Write(SerializeJson(client.api.accounts.get("5cb16865-33d6-4494-8f0f-3d765f4dddb3")));
-                Response.Write(" Apps Calls");
-                Response.Write("</br>");
-                Response.Write("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                Response.Write(" Apps list_authorized");
-                Response.Write("</br>");
-                Response.Write(SerializeJson(client.api.apps.list_authorized(currentuser.id, "")));
-                Response.Write("</br>");
-                Response.Write(" Apps get");
-                Response.Write("</br>");
-                Response.Write(SerializeJson(client.api.apps.get(70, "")));
-                Response.Write("</br>");
                 Response.Write("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             }
             else
