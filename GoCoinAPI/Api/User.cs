@@ -88,8 +88,8 @@ namespace GoCoinAPI
         {
             Callbackurl = "users/" + _user.id + "/password" + "?access_token=" + this._api.client.token;
             restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_update_password = DeserializeJson(restClient.MakeRequest());
-            return User_update_password;
+            restClient.MakeRequest();
+            return _user;
         }
 
         //Todo: Deserialize Json to type T

@@ -81,7 +81,7 @@ namespace GoCoinAPI
             {
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {         
-                   if ((response.StatusCode != HttpStatusCode.OK) && (response.StatusCode != HttpStatusCode.Created))
+                   if ((response.StatusCode != HttpStatusCode.OK) && (response.StatusCode != HttpStatusCode.Created) && (response.StatusCode != HttpStatusCode.NoContent))
                     {
                         var message = String.Format("Request failed. Received HTTP {0}", response.StatusCode);
                         throw new ApplicationException(message);

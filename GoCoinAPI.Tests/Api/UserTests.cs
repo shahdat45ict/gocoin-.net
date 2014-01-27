@@ -27,17 +27,14 @@ namespace GoCoinAPI.Tests.Api
             Assert.AreEqual(existingUser.id, result.id);
         }
 
-        // This test is failing not because of the request, which the api client sends correctly, but because
-        // the api client expects an HTTP 200 response with body content, even though the api returns an
-        // HTTP 204 (No Content) response (as documented) to indicate the request was successfully processed.
+        //Set a valid password for the user befor run this test. 
         [Test]
-        [Explicit]
         public void CanUpdatePassword()
         {
             var existingUser = Client.api.user.self();
-            existingUser.current_password       = "************************";
-            existingUser.password               = "************************";
-            existingUser.password_confirmation  = "************************";
+            existingUser.current_password       = "*******";
+            existingUser.password               = "*******";
+            existingUser.password_confirmation  = "*******";
             Client.api.user.update_password(existingUser);
         }
     }
