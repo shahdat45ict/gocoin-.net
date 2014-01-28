@@ -35,15 +35,13 @@ namespace GoCoinAPI.Tests.Api
         }
 
         // I am receiving an HTTP 401 Unauthorized response, even though the token has both invoice_read
-        // and invoice_read_write OAuth Scopes. Nevertheless, the search method is returning just one instance
-        // of the Invoices class, but it should return a collection instead, and this is why I leave the
-        // last line of this test commented out, because it doesn't compile.
+        // and invoice_read_write OAuth Scopes. 
         [Test]
         [Explicit]
         public void CanSearch()
         {
             var result = Client.api.invoices.search("merchant_id=" + User.merchant_id);
-        //    Assert.Greater(result.Count, 0);
+            Assert.Greater(result.Length, 0);
         }
     }
 }

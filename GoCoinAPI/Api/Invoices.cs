@@ -132,12 +132,12 @@ namespace GoCoinAPI
         /// </summary>
         /// <param name="_invoiceparams">Querystring with the invoice parameters.</param>
         /// <returns>The invoices that match the search parameters.</returns>
-        public Invoices search(string _invoiceparams)
+        public Invoices[] search(string _invoiceparams)
         {
 
             Callbackurl = "invoices/search?" + _invoiceparams + "?access_token=" + this._api.client.token;
             restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
-            Invoices Invoices_update = DeserializeJson(restClient.MakeRequest());
+            Invoices[] Invoices_update = DeserializeJsonArray(restClient.MakeRequest());
             return Invoices_update;
         }
 
@@ -159,6 +159,11 @@ namespace GoCoinAPI
         private Invoices DeserializeJson(string jsonObjectString)
         {
             return JsonConvert.DeserializeObject<Invoices>(jsonObjectString);
+        }
+
+        private Invoices[] DeserializeJsonArray(string jsonObjectString)
+        {
+            return JsonConvert.DeserializeObject<Invoices[]>(jsonObjectString);
         }
 
         // Todo: Searialize type T to Json
