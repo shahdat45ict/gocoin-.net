@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7BE9ABF7-30D6-4C46-9ECD-E62380FF3268}</ProjectGuid>
+    <ProjectGuid>{66499D89-4C41-41B2-92CD-9ED4BE96D3C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoCoinAPI</RootNamespace>
-    <AssemblyName>GoCoinAPI</AssemblyName>
+    <RootNamespace>GoCoinAPI.Tests</RootNamespace>
+    <AssemblyName>GoCoinAPI.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,19 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dlls\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\StructureMAP\StructureMap.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,22 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api.cs" />
-    <Compile Include="Auth.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="Api\AccessToken.cs" />
-    <Compile Include="Api\AuthorizationCode.cs" />
-    <Compile Include="Api\Accounts.cs" />
-    <Compile Include="Api\Invoices.cs" />
-    <Compile Include="Api\Merchant.cs" />
-    <Compile Include="Api\User.cs" />
-    <Compile Include="Logger\ErrorManager.cs" />
-    <Compile Include="RestClient\RestClient.cs" />
+    <Compile Include="Api\AccountsTests.cs" />
+    <Compile Include="Api\ApiTestsBase.cs" />
+    <Compile Include="Api\InvoicesTests.cs" />
+    <Compile Include="Api\MerchantTests.cs" />
+    <Compile Include="Api\UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dlls\Common.Logging.dll" />
-    <Content Include="dlls\Newtonsoft.Json.dll" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoCoinAPI\GoCoinAPI.csproj">
+      <Project>{7BE9ABF7-30D6-4C46-9ECD-E62380FF3268}</Project>
+      <Name>GoCoinAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

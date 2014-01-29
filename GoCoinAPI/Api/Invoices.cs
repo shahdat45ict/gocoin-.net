@@ -113,33 +113,39 @@ namespace GoCoinAPI
         private ErrorManager _errLog = new ErrorManager("File");
         private string Callbackurl = null;
 
+        /// <summary>
+        /// Create a new invoice.
+        /// </summary>
+        /// <param name="_merchantid">Merchant's id.</param>
+        /// <param name="_invoice">New invoice data.</param>
+        /// <returns>The created Invoice.</returns>
         public Invoices create(string  _merchantid, Invoices _invoice)
         {             
             Callbackurl = "merchants/" + _merchantid + "/invoices";
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_invoice), Callbackurl, this._api.client.token);
+            restClient = new RestClient(this._api.BaseapiSecureUrl, HttpVerb.POST, SerializeJson(_invoice), Callbackurl, this._api.client.token);
             Invoices Invoices_create = DeserializeJson(restClient.MakeRequest());
             return Invoices_create;
         }
 
-        public Invoices update(Invoices _invoice)
+        /// <summary>
+        /// Searches invoices.
+        /// </summary>
+        /// <param name="_invoiceparams">Querystring with the invoice parameters.</param>
+        /// <returns>The invoices that match the search parameters.</returns>
+        public Invoices[] search(string _invoiceparams)
         {
 
-            Callbackurl = "invoices/" + _invoice.id;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_invoice), Callbackurl, this._api.client.token);
-            Invoices Invoices_update = DeserializeJson(restClient.MakeRequest());
+            Callbackurl = "invoices/search?" + _invoiceparams;// +"?access_token=" + this._api.client.token;
+            restClient = new RestClient(this._api.BaseapiSecureUrl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
+            Invoices[] Invoices_update = DeserializeJsonArray(restClient.MakeRequest());
             return Invoices_update;
         }
 
-        public Invoices search(string _invoiceparams)
-        {
-
-            Callbackurl = "invoices/search?" + _invoiceparams + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
-            Invoices Invoices_update = DeserializeJson(restClient.MakeRequest());
-            return Invoices_update;
-        }
-
-      
+        /// <summary>
+        /// Gets an invoice.
+        /// </summary>
+        /// <param name="id">Invoice id.</param>
+        /// <returns>The invoice data.</returns>
         public Invoices get(string id)
         {
             Callbackurl = "invoices/" + id + "?access_token=" + this._api.client.token;
@@ -153,6 +159,17 @@ namespace GoCoinAPI
         private Invoices DeserializeJson(string jsonObjectString)
         {
             return JsonConvert.DeserializeObject<Invoices>(jsonObjectString);
+        }
+
+        private Invoices[] DeserializeJsonArray(string jsonObjectString)
+        {
+            return JsonConvert.DeserializeObject<SearchInvoicesResult>(jsonObjectString).invoices;
+        }
+
+        private class SearchInvoicesResult
+        {
+            public string status { get; set; }
+            public Invoices[] invoices { get; set; } 
         }
 
         // Todo: Searialize type T to Json

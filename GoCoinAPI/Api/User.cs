@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Logger;
 using Newtonsoft.Json;
 
@@ -43,7 +40,10 @@ namespace GoCoinAPI
             this._api = api;
         }
 
-        
+        /// <summary>
+        /// Gets resource owner user.
+        /// </summary>
+        /// <returns>Resource owner user.</returns>
         public User self()
         {
             Callbackurl = "user/?access_token=" + this._api.client.token;
@@ -52,22 +52,11 @@ namespace GoCoinAPI
             return User_self;
         }
 
-        public User list()
-        {
-            Callbackurl = "users/?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
-            User User_list = DeserializeJson(restClient.MakeRequest());
-            return User_list;
-        }
-
-        public User create(User _user)
-        {
-            Callbackurl = "users/?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_create = DeserializeJson(restClient.MakeRequest());
-            return User_create;
-        }
-
+        /// <summary>
+        /// Updates an existing user.
+        /// </summary>
+        /// <param name="_user">New data for the user.</param>
+        /// <returns>The updated user.</returns>
         public User update(User _user)
         {
 
@@ -77,15 +66,11 @@ namespace GoCoinAPI
             return User_update;
         }
 
-        public User delete(User _user)
-        {
-
-            Callbackurl = "users/" + _user.id + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.DELETE, "", Callbackurl, this._api.client.token);
-            User User_Created = DeserializeJson(restClient.MakeRequest());
-            return User_Created;
-        }
-
+        /// <summary>
+        /// Gets an existing user.
+        /// </summary>
+        /// <param name="id">User's id.</param>
+        /// <returns>The found user.</returns>
         public User get(string id)
         {
             Callbackurl = "users/" + id + "?access_token=" + this._api.client.token;
@@ -94,59 +79,18 @@ namespace GoCoinAPI
             return User_getbyid;
         }
        
-        public User get_applications_for_user(string id)
-        {
-            Callbackurl = "users/" + id + "applications" + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
-            User User_getbyid = DeserializeJson(restClient.MakeRequest());
-            return User_getbyid;
-        }
-
+        /// <summary>
+        /// Changes user password.
+        /// </summary>
+        /// <param name="_user">User data with current, new and new confirmation passwords.</param>
+        /// <returns>The updated user.</returns>
         public User update_password(User _user)
         {
             Callbackurl = "users/" + _user.id + "/password" + "?access_token=" + this._api.client.token;
             restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_update_password = DeserializeJson(restClient.MakeRequest());
-            return User_update_password;
+            restClient.MakeRequest();
+            return _user;
         }
-
-        public User request_password_reset(User _user)
-        {
-            Callbackurl = "users/request_password_reset?access_token=" + this._api.client.token;
-
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_create = DeserializeJson(restClient.MakeRequest());
-            return User_create;
-        }
-
-        public User reset_password(User _user, string reset_token)
-        {
-            Callbackurl = "users/" + _user.id+ "/reset_password/"+ reset_token +" ?access_token=" + this._api.client.token;
-
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_reset_password = DeserializeJson(restClient.MakeRequest());
-            return User_reset_password;
-        }
-
-        public User request_new_confirmation_email(User _user)
-        {
-            Callbackurl = "users/request_new_confirmation_email?access_token=" + this._api.client.token;
-
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_create = DeserializeJson(restClient.MakeRequest());
-            return User_create;
-        }
-
-        public User reset_password_with_token(User _user)
-        {
-            Callbackurl = "users/" + _user.id + "/reset_password/" + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.PATCH, SerializeJson(_user), Callbackurl, this._api.client.token);
-            User User_update_password = DeserializeJson(restClient.MakeRequest());
-            return User_update_password;
-        }
-
-
-
 
         //Todo: Deserialize Json to type T
         private User DeserializeJson(string jsonObjectString)
