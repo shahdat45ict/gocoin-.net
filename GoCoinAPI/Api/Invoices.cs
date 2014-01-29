@@ -122,7 +122,7 @@ namespace GoCoinAPI
         public Invoices create(string  _merchantid, Invoices _invoice)
         {             
             Callbackurl = "merchants/" + _merchantid + "/invoices";
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.POST, SerializeJson(_invoice), Callbackurl, this._api.client.token);
+            restClient = new RestClient(this._api.BaseapiSecureUrl, HttpVerb.POST, SerializeJson(_invoice), Callbackurl, this._api.client.token);
             Invoices Invoices_create = DeserializeJson(restClient.MakeRequest());
             return Invoices_create;
         }
@@ -135,8 +135,8 @@ namespace GoCoinAPI
         public Invoices[] search(string _invoiceparams)
         {
 
-            Callbackurl = "invoices/search?" + _invoiceparams + "?access_token=" + this._api.client.token;
-            restClient = new RestClient(this._api.Baseapiurl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
+            Callbackurl = "invoices/search?" + _invoiceparams;// +"?access_token=" + this._api.client.token;
+            restClient = new RestClient(this._api.BaseapiSecureUrl, HttpVerb.GET, "", Callbackurl, this._api.client.token);
             Invoices[] Invoices_update = DeserializeJsonArray(restClient.MakeRequest());
             return Invoices_update;
         }
@@ -163,7 +163,13 @@ namespace GoCoinAPI
 
         private Invoices[] DeserializeJsonArray(string jsonObjectString)
         {
-            return JsonConvert.DeserializeObject<Invoices[]>(jsonObjectString);
+            return JsonConvert.DeserializeObject<SearchInvoicesResult>(jsonObjectString).invoices;
+        }
+
+        private class SearchInvoicesResult
+        {
+            public string status { get; set; }
+            public Invoices[] invoices { get; set; } 
         }
 
         // Todo: Searialize type T to Json
