@@ -2,5 +2,6 @@ language: c
 install:
   - sudo apt-get install mono-devel mono-gmcs nunit-console
 script:
-  - xbuild ./CI.proj
-  - nunit-console ./GoCoinAPI.Tests/GoCoinAPI.Tests.csproj
+  - xbuild ./GoCoinAPI/GoCoinAPI.csproj
+  - xbuild ./GoCoinAPI.Tests/GoCoinAPI.Tests.csproj
+  - nunit-console ./GoCoinAPI.Tests/bin/Debug/GoCoinAPI.Tests.dll
